@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>PhishGuard | URL Detector</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <script
+        src="{{ url_for('static', filename='script.js') }}"
+        defer>
+    </script>
+
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            🛡️ PhishGuard
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+
+    <main class="container">
+
+
+        <!-- Hero Section -->
+
+        <section class="hero">
+
+            <div class="shield">
+                🛡️
+            </div>
+
+            <h1>
+                Phishing URL Detection
+            </h1>
+
+            <p>
+                Protect yourself from malicious websites
+                using machine learning.
+            </p>
+
+        </section>
+
+
+
+        <!-- URL Checker -->
+
+        <section class="checker-card">
+
+            <h2>
+                Check a Website
+            </h2>
+
+            <p class="subtitle">
+                Enter a URL below to determine whether
+                it is legitimate or potentially phishing.
+            </p>
+
+
+            <form method="POST"
+                  action="/">
+
+                <label for="url">
+                    Website URL
+                </label>
+
+
+                <div class="input-group">
+
+                    <input
+                        type="text"
+                        id="url"
+                        name="url"
+                        placeholder="https://example.com"
+                        required
+                    >
+
+                    <button type="submit">
+
+                        🔍 Check URL
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+        <!-- Result -->
+
+        {% if result %}
+
+        <section class="result-card">
+
+            <h2>
+                Analysis Result
+            </h2>
+
+
+            {% if result == "Phishing" %}
+
+            <div class="result phishing">
+
+                <div class="result-icon">
+                    ⚠️
+                </div>
+
+                <div>
+
+                    <h3>
+                        Phishing URL Detected
+                    </h3>
+
+                    <p>
+                        This URL has been classified as
+                        potentially malicious.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% else %}
+
+            <div class="result legitimate">
+
+                <div class="result-icon">
+                    ✓
+                </div>
+
+                <div>
+
+                    <h3>
+                        Legitimate URL
+                    </h3>
+
+                    <p>
+                        This URL has been classified as
+                        legitimate by the model.
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endif %}
+
+
+            <div class="confidence">
+
+                <span>
+                    Model Confidence
+                </span>
+
+                <strong>
+                    {{ "%.2f"|format(confidence * 100) }}%
+                </strong>
+
+            </div>
+
+        </section>
+
+        {% endif %}
+
+
+
+        <!-- Features -->
+
+        <section class="features">
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🔎
+                </div>
+
+                <h3>
+                    URL Analysis
+                </h3>
+
+                <p>
+                    Analyzes URL length, special characters,
+                    domains and other URL characteristics.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🤖
+                </div>
+
+                <h3>
+                    Machine Learning
+                </h3>
+
+                <p>
+                    Uses a trained machine learning model
+                    to classify URLs.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="feature-icon">
+                    🗄️
+                </div>
+
+                <h3>
+                    Prediction History
+                </h3>
+
+                <p>
+                    Stores analyzed URLs and results
+                    for future reference.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 PhishGuard
+        </p>
+
+        <p>
+            Machine Learning Based Phishing URL Detection
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>

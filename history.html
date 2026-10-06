@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction History</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+    <script
+    src="{{ url_for('static', filename='script.js') }}"
+    defer>
+    </script>
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="logo">
+            PhishGuard
+        </div>
+
+        <div class="nav-links">
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/history">
+                History
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <main class="container">
+
+        <section class="hero">
+
+            <h1>
+                Prediction History
+            </h1>
+
+            <p>
+                Previously analyzed URLs
+            </p>
+
+        </section>
+
+
+        <section class="card">
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>ID</th>
+
+                            <th>URL</th>
+
+                            <th>Prediction</th>
+
+                            <th>Confidence</th>
+
+                            <th>Date</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for record in records %}
+
+                        <tr>
+
+                            <td>
+                                {{ record.prediction_id }}
+                            </td>
+
+                            <td>
+                                {{ record.url }}
+                            </td>
+
+                            <td>
+                                {{ record.prediction }}
+                            </td>
+
+                            <td>
+                                {{ "%.2f"|format(
+                                    record.confidence * 100
+                                ) }}%
+                            </td>
+
+                            <td>
+                                {{ record.created_at }}
+                            </td>
+
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            PhishGuard — Machine Learning Based URL Detection
+        </p>
+
+    </footer>
+
+</body>
+
+</html>
